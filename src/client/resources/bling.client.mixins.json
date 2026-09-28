@@ -1,0 +1,13 @@
+{
+	"required": true,
+	"package": "com.bling.client.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"client": [
+		"AvatarRendererMixin",
+		"CreativeModeInventoryScreenMixin",
+		"InventoryScreenMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

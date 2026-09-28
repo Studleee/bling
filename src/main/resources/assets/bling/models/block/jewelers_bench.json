@@ -1,0 +1,9 @@
+{
+	"parent": "minecraft:block/orientable_with_bottom",
+	"textures": {
+		"top": "bling:block/jewelers_bench_top",
+		"front": "bling:block/jewelers_bench_front",
+		"side": "bling:block/jewelers_bench_side",
+		"bottom": "bling:block/jewelers_bench_side"
+	}
+}

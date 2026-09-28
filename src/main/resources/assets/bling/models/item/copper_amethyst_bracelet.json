@@ -1,0 +1,1 @@
+{ "parent": "minecraft:item/generated", "textures": { "layer0": "bling:item/copper_amethyst_bracelet" } }

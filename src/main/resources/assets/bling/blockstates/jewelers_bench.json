@@ -1,0 +1,8 @@
+{
+	"variants": {
+		"facing=north": { "model": "bling:block/jewelers_bench", "y": 0 },
+		"facing=east": { "model": "bling:block/jewelers_bench", "y": 90 },
+		"facing=south": { "model": "bling:block/jewelers_bench", "y": 180 },
+		"facing=west": { "model": "bling:block/jewelers_bench", "y": 270 }
+	}
+}

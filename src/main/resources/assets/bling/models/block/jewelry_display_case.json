@@ -1,0 +1,36 @@
+{
+	"parent": "minecraft:block/block",
+	"textures": {
+		"particle": "bling:block/jewelry_display_case_side",
+		"side": "bling:block/jewelry_display_case_side",
+		"front": "bling:block/jewelry_display_case_front",
+		"velvet": "bling:block/jewelry_display_case_velvet",
+		"glass_top": "bling:block/jewelry_display_case_glass_top",
+		"glass_side": "bling:block/jewelry_display_case_glass_side"
+	},
+	"elements": [
+		{
+			"from": [ 0, 0, 0 ],
+			"to": [ 16, 11, 16 ],
+			"faces": {
+				"down": { "uv": [ 0, 0, 16, 16 ], "texture": "#side", "cullface": "down" },
+				"up": { "uv": [ 0, 0, 16, 16 ], "texture": "#velvet" },
+				"north": { "uv": [ 0, 5, 16, 16 ], "texture": "#front", "cullface": "north" },
+				"south": { "uv": [ 0, 5, 16, 16 ], "texture": "#side", "cullface": "south" },
+				"west": { "uv": [ 0, 5, 16, 16 ], "texture": "#side", "cullface": "west" },
+				"east": { "uv": [ 0, 5, 16, 16 ], "texture": "#side", "cullface": "east" }
+			}
+		},
+		{
+			"from": [ 0, 11, 0 ],
+			"to": [ 16, 16, 16 ],
+			"faces": {
+				"up": { "uv": [ 0, 0, 16, 16 ], "texture": "#glass_top", "cullface": "up" },
+				"north": { "uv": [ 0, 0, 16, 5 ], "texture": "#glass_side", "cullface": "north" },
+				"south": { "uv": [ 0, 0, 16, 5 ], "texture": "#glass_side", "cullface": "south" },
+				"west": { "uv": [ 0, 0, 16, 5 ], "texture": "#glass_side", "cullface": "west" },
+				"east": { "uv": [ 0, 0, 16, 5 ], "texture": "#glass_side", "cullface": "east" }
+			}
+		}
+	]
+}

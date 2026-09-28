@@ -1,0 +1,78 @@
+{
+	"model": {
+		"type": "minecraft:select",
+		"property": "minecraft:context_dimension",
+		"cases": [
+			{
+				"when": "minecraft:overworld",
+				"model": {
+					"type": "minecraft:range_dispatch",
+					"property": "minecraft:time",
+					"source": "daytime",
+					"wobble": false,
+					"scale": 24.0,
+					"entries": [
+				{ "threshold": 0.0, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_00" } },
+				{ "threshold": 0.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_01" } },
+				{ "threshold": 1.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_02" } },
+				{ "threshold": 2.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_03" } },
+				{ "threshold": 3.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_04" } },
+				{ "threshold": 4.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_05" } },
+				{ "threshold": 5.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_06" } },
+				{ "threshold": 6.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_07" } },
+				{ "threshold": 7.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_08" } },
+				{ "threshold": 8.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_09" } },
+				{ "threshold": 9.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_10" } },
+				{ "threshold": 10.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_11" } },
+				{ "threshold": 11.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_00" } },
+				{ "threshold": 12.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_01" } },
+				{ "threshold": 13.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_02" } },
+				{ "threshold": 14.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_03" } },
+				{ "threshold": 15.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_04" } },
+				{ "threshold": 16.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_05" } },
+				{ "threshold": 17.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_06" } },
+				{ "threshold": 18.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_07" } },
+				{ "threshold": 19.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_08" } },
+				{ "threshold": 20.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_09" } },
+				{ "threshold": 21.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_10" } },
+				{ "threshold": 22.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_11" } },
+				{ "threshold": 23.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_00" } }
+					]
+				}
+			}
+		],
+		"fallback": {
+			"type": "minecraft:range_dispatch",
+			"property": "minecraft:time",
+			"source": "random",
+			"scale": 24.0,
+			"entries": [
+				{ "threshold": 0.0, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_00" } },
+				{ "threshold": 0.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_01" } },
+				{ "threshold": 1.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_02" } },
+				{ "threshold": 2.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_03" } },
+				{ "threshold": 3.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_04" } },
+				{ "threshold": 4.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_05" } },
+				{ "threshold": 5.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_06" } },
+				{ "threshold": 6.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_07" } },
+				{ "threshold": 7.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_08" } },
+				{ "threshold": 8.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_09" } },
+				{ "threshold": 9.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_10" } },
+				{ "threshold": 10.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_11" } },
+				{ "threshold": 11.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_00" } },
+				{ "threshold": 12.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_01" } },
+				{ "threshold": 13.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_02" } },
+				{ "threshold": 14.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_03" } },
+				{ "threshold": 15.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_04" } },
+				{ "threshold": 16.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_05" } },
+				{ "threshold": 17.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_06" } },
+				{ "threshold": 18.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_07" } },
+				{ "threshold": 19.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_08" } },
+				{ "threshold": 20.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_09" } },
+				{ "threshold": 21.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_10" } },
+				{ "threshold": 22.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_11" } },
+				{ "threshold": 23.5, "model": { "type": "minecraft:model", "model": "bling:item/netherite_iced_watch_00" } }
+			]
+		}
+	}
+}

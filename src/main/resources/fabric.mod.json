@@ -1,0 +1,34 @@
+{
+	"schemaVersion": 1,
+	"id": "bling",
+	"version": "${version}",
+	"name": "Bling",
+	"description": "Jewelry you wear in three new inventory slots: earrings, chains, bracelets, and watches in iron, gold, copper, and netherite, set with diamonds, emeralds, or amethyst. Made at a jeweler's bench and shown on your player. A watch shows the time.",
+	"authors": [
+		"Jacob"
+	],
+	"license": "All-Rights-Reserved",
+	"icon": "assets/bling/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.bling.Bling"
+		],
+		"client": [
+			"com.bling.client.BlingClient"
+		]
+	},
+	"mixins": [
+		"bling.mixins.json",
+		{
+			"config": "bling.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.19.5",
+		"minecraft": "~26.3",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}

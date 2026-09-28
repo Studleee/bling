@@ -1,0 +1,7 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"pattern": [ "GGG", "PRP", "PPP" ],
+	"key": { "G": "minecraft:glass", "R": "minecraft:red_wool", "P": "#minecraft:planks" },
+	"result": { "id": "bling:jewelry_display_case", "count": 1 }
+}
