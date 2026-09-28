@@ -734,9 +734,10 @@ foreach ($stand in $stands) {
 	"parent": "minecraft:recipes/root",
 	"criteria": {
 		"has_bench": { "conditions": { "items": [ { "items": "bling:jewelers_bench" } ] }, "trigger": "minecraft:inventory_changed" },
+		"has_slab": { "conditions": { "items": [ { "items": "#minecraft:wooden_slabs" } ] }, "trigger": "minecraft:inventory_changed" },
 		"has_the_recipe": { "conditions": { "recipes": "bling:$standId" }, "trigger": "minecraft:recipe_unlocked" }
 	},
-	"requirements": [ [ "has_the_recipe", "has_bench" ] ],
+	"requirements": [ [ "has_the_recipe", "has_bench", "has_slab" ] ],
 	"rewards": { "recipes": [ "bling:$standId" ] }
 }
 "@
