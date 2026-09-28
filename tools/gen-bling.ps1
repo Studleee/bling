@@ -306,11 +306,11 @@ foreach ($piece in $pieces) { $lang["piece.bling.$($piece[0])"] = $piece[2] }
 
 # ---- The 3D jewelry on the player ----
 # Every box of a piece samples its whole texture, so these are just the material with a little sparkle.
-function Material-Texture($dark, $mid, $light, $path, $seed) {
+function Material-Texture($dark, $mid, $light, $path, $seed, $size = 32) {
 	$rand = New-Object System.Random $seed
-	$bmp = New-Object System.Drawing.Bitmap 32, 32, ([System.Drawing.Imaging.PixelFormat]::Format32bppArgb)
-	for ($y = 0; $y -lt 32; $y++) {
-		for ($x = 0; $x -lt 32; $x++) {
+	$bmp = New-Object System.Drawing.Bitmap $size, $size, ([System.Drawing.Imaging.PixelFormat]::Format32bppArgb)
+	for ($y = 0; $y -lt $size; $y++) {
+		for ($x = 0; $x -lt $size; $x++) {
 			$roll = $rand.NextDouble()
 			$hex = if ($roll -lt 0.15) { $light } elseif ($roll -lt 0.3) { $dark } else { $mid }
 			$bmp.SetPixel($x, $y, (Color $hex))
@@ -638,8 +638,6 @@ Write-Json (Join-Path $data 'advancement\recipes\misc\jewelry_display_case.json'
 	"rewards": { "recipes": [ "bling:jewelry_display_case" ] }
 }
 '@
-Write-Json (Join-Path $root 'data\minecraft\tags\block\mineable\axe.json') '{ "values": [ "bling:jewelers_bench", "bling:jewelry_display_case" ] }'
-
 # The case's screen: like a hopper's, with 4 slots on a strip of velvet.
 $casePanel = New-Object System.Drawing.Bitmap 256, 256, ([System.Drawing.Imaging.PixelFormat]::Format32bppArgb)
 $script:g = [System.Drawing.Graphics]::FromImage($casePanel)
@@ -656,6 +654,94 @@ foreach ($p in @(@(0, 0), @(1, 0), @(0, 1), @(175, 0), @(174, 0), @(175, 1), @(0
 	$casePanel.SetPixel($p[0], $p[1], [System.Drawing.Color]::Transparent)
 }
 Save-Bitmap $casePanel (Join-Path $tex 'gui\container\jewelry_display_case.png')
+
+# ---- Jewelry stands: small displays that sit on top of a block ----
+Material-Texture '3a2414' '5a3a22' '7a5232' (Join-Path $tex 'block\stand_wood.png') 101 16
+Material-Texture '6e0f1d' '8f1627' 'ad2238' (Join-Path $tex 'block\stand_velvet.png') 102 16
+Material-Texture 'b0781c' 'f2c53d' 'fff2a6' (Join-Path $tex 'block\stand_gold.png') 103 16
+
+# One box of a model, from and to in pixels, with every face using the same texture (its UVs follow the box).
+function Box($from, $to, $texture) {
+	$faces = foreach ($face in 'down', 'up', 'north', 'south', 'west', 'east') {
+		$cull = if ($face -eq 'down' -and $from[1] -eq 0) { ', "cullface": "down"' } else { '' }
+		"`"$face`": { `"texture`": `"#$texture`"$cull }"
+	}
+	$f = ($from | ForEach-Object { $_.ToString([System.Globalization.CultureInfo]::InvariantCulture) }) -join ', '
+	$t = ($to | ForEach-Object { $_.ToString([System.Globalization.CultureInfo]::InvariantCulture) }) -join ', '
+	return "{ `"from`": [ $f ], `"to`": [ $t ], `"faces`": { $($faces -join ', ') } }"
+}
+# id, display name, the boxes (front faces north, toward smaller z), recipe pattern, recipe key
+$stands = @(
+	@('watch_stand', 'Watch Stand', @(
+		(Box @(4, 0, 5) @(12, 1, 11) 'wood'),
+		(Box @(5, 1, 6.5) @(11, 5, 9.5) 'velvet')
+	), '[ "R", "S" ]', '"R": "minecraft:red_wool", "S": "#minecraft:wooden_slabs"'),
+	@('necklace_bust', 'Necklace Bust', @(
+		(Box @(5, 0, 6) @(11, 1, 10) 'wood'),
+		(Box @(7.5, 1, 7.5) @(8.5, 4, 8.5) 'wood'),
+		(Box @(4, 4, 6.5) @(12, 11, 9.5) 'velvet'),
+		(Box @(6.5, 11, 7) @(9.5, 15, 9) 'velvet')
+	), '[ "R", "R", "S" ]', '"R": "minecraft:red_wool", "S": "#minecraft:wooden_slabs"'),
+	@('earring_stand', 'Earring Stand', @(
+		(Box @(5, 0, 6.5) @(11, 1, 9.5) 'wood'),
+		(Box @(7.5, 1, 7.5) @(8.5, 9, 8.5) 'gold'),
+		(Box @(3, 9, 7.5) @(13, 10, 8.5) 'gold')
+	), '[ "NNN", " N ", " S " ]', '"N": "minecraft:gold_nugget", "S": "#minecraft:wooden_slabs"')
+)
+foreach ($stand in $stands) {
+	$standId, $standName, $boxes, $pattern, $key = $stand
+	$lang["block.bling.$standId"] = $standName
+	Write-Json (Join-Path $assets "models\block\$standId.json") @"
+{
+	"parent": "minecraft:block/block",
+	"textures": {
+		"particle": "bling:block/stand_wood",
+		"wood": "bling:block/stand_wood",
+		"velvet": "bling:block/stand_velvet",
+		"gold": "bling:block/stand_gold"
+	},
+	"elements": [
+		$($boxes -join ",`n`t`t")
+	]
+}
+"@
+	$variants = ($facings.Keys | ForEach-Object { "`t`t`"facing=$_`": { `"model`": `"bling:block/$standId`", `"y`": $($facings[$_]) }" }) -join ",`n"
+	Write-Json (Join-Path $assets "blockstates\$standId.json") "{`n`t`"variants`": {`n$variants`n`t}`n}"
+	Write-Json (Join-Path $assets "items\$standId.json") "{ `"model`": { `"type`": `"minecraft:model`", `"model`": `"bling:block/$standId`" } }"
+	Write-Json (Join-Path $data "loot_table\blocks\$standId.json") @"
+{
+	"type": "minecraft:block",
+	"pools": [
+		{
+			"rolls": 1,
+			"condition": { "type": "minecraft:survives_explosion" },
+			"entries": [ { "type": "minecraft:item", "name": "bling:$standId" } ]
+		}
+	]
+}
+"@
+	Write-Json (Join-Path $data "recipe\$standId.json") @"
+{
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"pattern": $pattern,
+	"key": { $key },
+	"result": { "id": "bling:$standId", "count": 1 }
+}
+"@
+	Write-Json (Join-Path $data "advancement\recipes\misc\$standId.json") @"
+{
+	"parent": "minecraft:recipes/root",
+	"criteria": {
+		"has_bench": { "conditions": { "items": [ { "items": "bling:jewelers_bench" } ] }, "trigger": "minecraft:inventory_changed" },
+		"has_the_recipe": { "conditions": { "recipes": "bling:$standId" }, "trigger": "minecraft:recipe_unlocked" }
+	},
+	"requirements": [ [ "has_the_recipe", "has_bench" ] ],
+	"rewards": { "recipes": [ "bling:$standId" ] }
+}
+"@
+}
+Write-Json (Join-Path $root 'data\minecraft\tags\block\mineable\axe.json') '{ "values": [ "bling:jewelers_bench", "bling:jewelry_display_case", "bling:watch_stand", "bling:necklace_bust", "bling:earring_stand" ] }'
 
 # ---- Mod icon: the gold diamond chain, 8 times the size ----
 Draw (Rows $art['chain']) @{ 'd' = 'b0781c'; 'm' = 'f2c53d'; 'l' = 'fff2a6'; 'x' = '1d9e97'; 'o' = '4ee6dc'; 'H' = 'd7fff9' } (Join-Path $assets 'icon.png') 8

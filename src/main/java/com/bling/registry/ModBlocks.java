@@ -2,6 +2,8 @@ package com.bling.registry;
 
 import com.bling.block.JewelersBenchBlock;
 import com.bling.block.JewelryDisplayCaseBlock;
+import com.bling.block.JewelryStandBlock;
+import com.bling.jewelry.BodySlot;
 
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
@@ -22,6 +24,17 @@ public final class ModBlocks {
 		JewelryDisplayCaseBlock::new,
 		BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).strength(2.0F).sound(SoundType.WOOD).noOcclusion()
 	);
+	public static final Block WATCH_STAND = stand("watch_stand", BodySlot.WRIST);
+	public static final Block NECKLACE_BUST = stand("necklace_bust", BodySlot.NECK);
+	public static final Block EARRING_STAND = stand("earring_stand", BodySlot.EARS);
+
+	private static Block stand(String name, BodySlot slot) {
+		return Register.block(
+			name,
+			properties -> new JewelryStandBlock(slot, properties),
+			BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).strength(0.5F).sound(SoundType.WOOD).noOcclusion()
+		);
+	}
 
 	private ModBlocks() {
 	}

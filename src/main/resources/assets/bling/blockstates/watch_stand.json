@@ -1,0 +1,8 @@
+{
+	"variants": {
+		"facing=north": { "model": "bling:block/watch_stand", "y": 0 },
+		"facing=east": { "model": "bling:block/watch_stand", "y": 90 },
+		"facing=south": { "model": "bling:block/watch_stand", "y": 180 },
+		"facing=west": { "model": "bling:block/watch_stand", "y": 270 }
+	}
+}

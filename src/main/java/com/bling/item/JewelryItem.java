@@ -44,20 +44,24 @@ public class JewelryItem extends Item {
 
 	@Override
 	public InteractionResult use(Level level, Player player, InteractionHand hand) {
-		if (!level.isClientSide()) {
-			ItemStack held = player.getItemInHand(hand);
-			ItemStack previous = Worn.get(player, piece.slot());
-			Worn.set(player, piece.slot(), held.copyWithCount(1));
-			held.shrink(1);
-			if (!previous.isEmpty()) {
-				if (held.isEmpty()) {
-					player.setItemInHand(hand, previous);
-				} else if (!player.getInventory().add(previous)) {
-					player.drop(previous, false, Prediction.SERVER_ONLY);
-				}
-			}
-			level.playSound(null, player.getX(), player.getY(), player.getZ(),
-				metal == Metal.GOLD ? SoundEvents.ARMOR_EQUIP_GOLD : SoundEvents.ARMOR_EQUIP_CHAIN, SoundSource.PLAYERS, 1.0F, 1.2F);
+		if (level.isClientSide()) {
+			return InteractionResult.SUCCESS;
+		}
+		ItemStack held = player.getItemInHand(hand);
+		ItemStack previous = Worn.get(player, piece.slot());
+		Worn.set(player, piece.slot(), held.copyWithCount(1));
+		held.shrink(1);
+		level.playSound(null, player.getX(), player.getY(), player.getZ(),
+			metal == Metal.GOLD ? SoundEvents.ARMOR_EQUIP_GOLD : SoundEvents.ARMOR_EQUIP_CHAIN, SoundSource.PLAYERS, 1.0F, 1.2F);
+		if (previous.isEmpty()) {
+			return InteractionResult.SUCCESS;
+		}
+		// The game puts whatever the result says into the hand afterwards, so setting the hand directly would get wiped.
+		if (held.isEmpty()) {
+			return InteractionResult.SUCCESS.heldItemTransformedTo(previous);
+		}
+		if (!player.getInventory().add(previous)) {
+			player.drop(previous, false, Prediction.SERVER_ONLY);
 		}
 		return InteractionResult.SUCCESS;
 	}

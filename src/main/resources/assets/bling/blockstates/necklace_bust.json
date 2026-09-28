@@ -1,0 +1,8 @@
+{
+	"variants": {
+		"facing=north": { "model": "bling:block/necklace_bust", "y": 0 },
+		"facing=east": { "model": "bling:block/necklace_bust", "y": 90 },
+		"facing=south": { "model": "bling:block/necklace_bust", "y": 180 },
+		"facing=west": { "model": "bling:block/necklace_bust", "y": 270 }
+	}
+}

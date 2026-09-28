@@ -1,0 +1,14 @@
+{
+	"parent": "minecraft:block/block",
+	"textures": {
+		"particle": "bling:block/stand_wood",
+		"wood": "bling:block/stand_wood",
+		"velvet": "bling:block/stand_velvet",
+		"gold": "bling:block/stand_gold"
+	},
+	"elements": [
+		{ "from": [ 5, 0, 6.5 ], "to": [ 11, 1, 9.5 ], "faces": { "down": { "texture": "#wood", "cullface": "down" }, "up": { "texture": "#wood" }, "north": { "texture": "#wood" }, "south": { "texture": "#wood" }, "west": { "texture": "#wood" }, "east": { "texture": "#wood" } } },
+		{ "from": [ 7.5, 1, 7.5 ], "to": [ 8.5, 9, 8.5 ], "faces": { "down": { "texture": "#gold" }, "up": { "texture": "#gold" }, "north": { "texture": "#gold" }, "south": { "texture": "#gold" }, "west": { "texture": "#gold" }, "east": { "texture": "#gold" } } },
+		{ "from": [ 3, 9, 7.5 ], "to": [ 13, 10, 8.5 ], "faces": { "down": { "texture": "#gold" }, "up": { "texture": "#gold" }, "north": { "texture": "#gold" }, "south": { "texture": "#gold" }, "west": { "texture": "#gold" }, "east": { "texture": "#gold" } } }
+	]
+}

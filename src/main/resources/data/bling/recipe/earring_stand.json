@@ -1,0 +1,7 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"pattern": [ "NNN", " N ", " S " ],
+	"key": { "N": "minecraft:gold_nugget", "S": "#minecraft:wooden_slabs" },
+	"result": { "id": "bling:earring_stand", "count": 1 }
+}

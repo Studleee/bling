@@ -1,0 +1,7 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"pattern": [ "R", "R", "S" ],
+	"key": { "R": "minecraft:red_wool", "S": "#minecraft:wooden_slabs" },
+	"result": { "id": "bling:necklace_bust", "count": 1 }
+}

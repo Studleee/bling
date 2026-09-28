@@ -3,6 +3,7 @@ package com.bling.client;
 import com.bling.Bling;
 import com.bling.client.render.JewelryDisplayCaseRenderer;
 import com.bling.client.render.JewelryLayer;
+import com.bling.client.render.JewelryStandRenderer;
 import com.bling.client.screen.JewelersBenchScreen;
 import com.bling.client.screen.JewelryDisplayCaseScreen;
 import com.bling.registry.ModBlockEntities;
@@ -22,6 +23,7 @@ public class BlingClient implements ClientModInitializer {
 		MenuScreens.register(ModMenus.JEWELERS_BENCH, JewelersBenchScreen::new);
 		MenuScreens.register(ModMenus.JEWELRY_DISPLAY_CASE, JewelryDisplayCaseScreen::new);
 		BlockEntityRenderers.register(ModBlockEntities.JEWELRY_DISPLAY_CASE, JewelryDisplayCaseRenderer::new);
+		BlockEntityRenderers.register(ModBlockEntities.JEWELRY_STAND, JewelryStandRenderer::new);
 
 		LivingEntityRenderLayerRegistrationCallback.EVENT.register((entityType, renderer, helper, context) -> {
 			if (renderer instanceof AvatarRenderer<?> avatarRenderer) {

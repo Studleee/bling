@@ -83,7 +83,9 @@ public class JewelryDisplayCaseRenderer implements BlockEntityRenderer<JewelryDi
 			poseStack.rotateDegrees(Axis.YP, -state.facing.toYRot());
 			poseStack.translate(layout[i][0], 0.0F, layout[i][1]);
 			// Lie the item face-up with its top pointing to the back of the case, so it reads right from the front.
+			// The extra half turn is because the fixed item transform faces the item backwards (item frames do the same).
 			poseStack.rotateDegrees(Axis.XP, -90.0F);
+			poseStack.rotateDegrees(Axis.YP, 180.0F);
 			poseStack.scale(ITEM_SIZE, ITEM_SIZE, ITEM_SIZE);
 			state.items.get(i).submit(poseStack, collector, state.lightCoords, OverlayTexture.NO_OVERLAY, 0);
 			poseStack.popPose();
