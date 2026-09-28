@@ -15,6 +15,7 @@ Jewelry for Minecraft 26.3 (Fabric). Make earrings, chains, bracelets, and watch
   - **Iced out watch:** a watch with a diamond bezel and band. Also tells the time.
 - **Jeweler's bench:** put ingots in the metal slot (and a gem if you want one), pick a piece, and take it out. Each button previews what you'd get, and hovering one shows what it costs.
 - **Jewelry display case:** a wooden counter with red velvet under a glass top. Right-click to open it and put in up to 4 pieces. They lie on the velvet and spread out to fit however many there are. Breaking the case drops it and its jewelry.
+- **Jewelry stands:** small displays that sit on top of a block (including the display case), each holding one piece: a **watch stand** (velvet cushion, for watches and bracelets), a **necklace bust** (for chains), and an **earring stand** (gold T-bar, for earrings and studs). Right-click with a piece to hang it (swapping out whatever was there), with an empty hand to take it.
 - **Dying:** your jewelry drops with the rest of your things, unless `keepInventory` is on.
 
 **Costs at the bench**
@@ -38,6 +39,14 @@ Jeweler's Bench:        I G I      I = iron ingot, G = gold ingot
 Jewelry Display Case:   G G G      G = glass
                         P R P      R = red wool
                         P P P      P = any planks
+Watch Stand:            R          R = red wool
+                        S          S = any wooden slab
+Necklace Bust:          R
+                        R
+                        S
+Earring Stand:          N N N      N = gold nugget
+                          N
+                          S
 ```
 
 ## Quick start
@@ -54,12 +63,14 @@ src/main/java/com/bling/
   item/JewelryItem.java           right-click to wear
   menu/JewelersBenchMenu.java     the bench's crafting rules
   block/JewelryDisplayCase*.java  the display case and its storage
+  block/JewelryStand*.java        the watch stand, necklace bust, and earring stand
   mixin/                          the inventory slots and dropping jewelry on death
 
 src/client/java/com/bling/client/
   render/JewelryModels.java       the 3D jewelry on the player
   render/JewelryLayer.java        draws it
   render/JewelryDisplayCaseRenderer.java  jewelry on the velvet
+  render/JewelryStandRenderer.java        jewelry on the stands
   screen/                         the bench and display case screens
   WatchHud.java                   the on-screen clock
 ```
